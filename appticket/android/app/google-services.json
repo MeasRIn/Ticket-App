@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "590634075784",
+    "project_id": "demoticketapp",
+    "storage_bucket": "demoticketapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:590634075784:android:cd7865bebe34ae55f3013d",
+        "android_client_info": {
+          "package_name": "com.example.appticket"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMp5twe7ovIubp8O6l67lxpvGftF2FGpA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
