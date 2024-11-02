@@ -34,8 +34,8 @@ class TicketScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     const TabBar(
-                      unselectedLabelColor: Colors.blueGrey,
-                      labelColor: Colors.black,
+                      unselectedLabelColor: Colors.grey,
+                      labelColor: Colors.blueGrey,
                       tabs: [
                         Tab(
                           child: Text("Coming soon",

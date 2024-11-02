@@ -54,7 +54,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           width: 195,
                           decoration: BoxDecoration(
                             color: isAirlineSelected
-                                ? const Color.fromARGB(255, 202, 202, 202)
+                                ? Colors.blueGrey
                                 : Colors.transparent,
                             borderRadius: const BorderRadius.horizontal(
                                 left: Radius.circular(30)),
@@ -84,7 +84,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           decoration: BoxDecoration(
                             color: isAirlineSelected
                                 ? Colors.transparent
-                                : const Color.fromARGB(255, 202, 202, 202),
+                                : Colors.blueGrey,
                             borderRadius: const BorderRadius.horizontal(
                                 right: Radius.circular(30)),
                           ),

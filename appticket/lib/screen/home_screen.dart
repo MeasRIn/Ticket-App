@@ -19,15 +19,17 @@ class HomeScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Column(
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Good morning",
-                          style: TextStyle(fontSize: 20),
+                          DateTime.now().hour < 12
+                              ? "Good morning"
+                              : "Good Afternoon",
+                          style: const TextStyle(fontSize: 20),
                         ),
-                        SizedBox(height: 5),
-                        Text(
+                        const SizedBox(height: 5),
+                        const Text(
                           "Book Tickets",
                           style: TextStyle(
                             fontSize: 25,
