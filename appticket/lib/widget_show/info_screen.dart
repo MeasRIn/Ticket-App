@@ -22,6 +22,9 @@ class _ProfileScreenState extends State<InfoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("My Information"),
+      ),
       body: ListView(
         children: [
           Padding(
@@ -31,7 +34,7 @@ class _ProfileScreenState extends State<InfoScreen> {
                 TextField(
                   controller: id,
                   decoration: InputDecoration(
-                    label: Text("Id"),
+                    label: const Text("Id"),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0)),
                   ),
@@ -42,7 +45,7 @@ class _ProfileScreenState extends State<InfoScreen> {
                 TextField(
                   controller: name,
                   decoration: InputDecoration(
-                    label: Text("Name"),
+                    label: const Text("Name"),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0)),
                   ),
@@ -53,7 +56,7 @@ class _ProfileScreenState extends State<InfoScreen> {
                 TextField(
                   controller: age,
                   decoration: InputDecoration(
-                    label: Text("Age"),
+                    label: const Text("Age"),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0)),
                   ),
@@ -64,7 +67,7 @@ class _ProfileScreenState extends State<InfoScreen> {
                 TextField(
                   controller: gender,
                   decoration: InputDecoration(
-                    label: Text("Gender"),
+                    label: const Text("Gender"),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0)),
                   ),
@@ -75,7 +78,7 @@ class _ProfileScreenState extends State<InfoScreen> {
                 TextField(
                   controller: phone,
                   decoration: InputDecoration(
-                    label: Text("Phone"),
+                    label: const Text("Phone"),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0)),
                   ),
@@ -86,7 +89,7 @@ class _ProfileScreenState extends State<InfoScreen> {
                 TextField(
                   controller: email,
                   decoration: InputDecoration(
-                    label: Text("Email"),
+                    label: const Text("Email"),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0)),
                   ),
@@ -97,7 +100,7 @@ class _ProfileScreenState extends State<InfoScreen> {
                 TextField(
                   controller: password,
                   decoration: InputDecoration(
-                    label: Text("Password"),
+                    label: const Text("Password"),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0)),
                   ),

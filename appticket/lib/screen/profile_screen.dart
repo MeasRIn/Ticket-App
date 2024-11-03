@@ -1,4 +1,6 @@
+import 'package:appticket/signup_screen/login_screen.dart';
 import 'package:appticket/widget_show/build_card.dart';
+import 'package:appticket/widget_show/info_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:appticket/widget_show/detail_profile_screen.dart';
 
@@ -48,7 +50,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const InfoScreen(),
+                      ));
+                },
                 child: Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
@@ -198,7 +206,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                   TextButton(
                                     onPressed: () {
-                                      Navigator.of(context).pop();
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const LoginScreen(),
+                                          ));
                                     },
                                     child: const Text(
                                       "Log Out",
