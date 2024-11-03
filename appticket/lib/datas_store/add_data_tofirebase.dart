@@ -3,8 +3,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class FirebaseService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Future<void> addUser(int id, String name, int age, String gender, int phone,
-      String email, String password) async {
+  Future<void> addUser(
+    int id,
+    String name,
+    int age,
+    String gender,
+    int phone,
+  ) async {
     try {
       await _firestore.collection('user').doc().set({
         'id': id,
@@ -12,8 +17,6 @@ class FirebaseService {
         'age': age,
         'gender': gender,
         'phone': phone,
-        'email': email,
-        'password': password
       });
       print("User added successfully!");
     } catch (e) {

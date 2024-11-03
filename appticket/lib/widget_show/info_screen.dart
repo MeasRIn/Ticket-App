@@ -16,14 +16,12 @@ class _ProfileScreenState extends State<InfoScreen> {
   final age = TextEditingController();
   final gender = TextEditingController();
   final phone = TextEditingController();
-  final email = TextEditingController();
-  final password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("My Information"),
+        title: const Text("User Information"),
       ),
       body: ListView(
         children: [
@@ -86,25 +84,6 @@ class _ProfileScreenState extends State<InfoScreen> {
                 const SizedBox(
                   height: 16,
                 ),
-                TextField(
-                  controller: email,
-                  decoration: InputDecoration(
-                    label: const Text("Email"),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8.0)),
-                  ),
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                TextField(
-                  controller: password,
-                  decoration: InputDecoration(
-                    label: const Text("Password"),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8.0)),
-                  ),
-                ),
                 const SizedBox(
                   height: 16,
                 ),
@@ -112,14 +91,11 @@ class _ProfileScreenState extends State<InfoScreen> {
                     onPressed: () {
                       try {
                         firebaseService.addUser(
-                          int.tryParse(id.text) ?? 0,
-                          name.text,
-                          int.tryParse(age.text) ?? 0,
-                          gender.text,
-                          int.tryParse(phone.text) ?? 0,
-                          email.text,
-                          password.text,
-                        );
+                            int.tryParse(id.text) ?? 0,
+                            name.text,
+                            int.tryParse(age.text) ?? 0,
+                            gender.text,
+                            int.tryParse(phone.text) ?? 0);
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(content: Text('Success')),
                         );
@@ -128,8 +104,6 @@ class _ProfileScreenState extends State<InfoScreen> {
                         age.clear();
                         gender.clear();
                         phone.clear();
-                        email.clear();
-                        password.clear();
                       } catch (e) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: Text('Error: $e')),

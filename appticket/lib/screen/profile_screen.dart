@@ -1,15 +1,21 @@
 import 'package:appticket/signup_screen/login_screen.dart';
 import 'package:appticket/widget_show/build_card.dart';
-import 'package:appticket/widget_show/info_screen.dart';
+import 'package:appticket/widget_show/card_profile.dart';
+import 'package:appticket/widget_show/detail_myprofile_screen.dart';
+import 'package:appticket/widget_show/language_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:appticket/widget_show/detail_profile_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
-
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
+
+String userEmail = "MeasRin@gmail.com";
+String userFullName = "Meas Rin";
+String userPhoneNumber = "097 30 38 535";
+String userBalance = "100";
 
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
@@ -25,18 +31,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                      children: [
-                        Container(
-                          height: 80,
-                          width: 80,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                          child: Image.asset("assets/images/user.png"),
-                        ),
-                        const Text("User Name"),
-                      ],
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        "My Account",
+                        style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.blueGrey),
+                      ),
                     ),
                     IconButton(
                       onPressed: () {},
@@ -49,28 +52,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ],
                 ),
               ),
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const InfoScreen(),
-                      ));
-                },
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                  child: Container(
-                    height: 200,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.blueGrey,
-                    ),
-                    child:
-                        const Center(child: Text("Your Profile Details Here")),
-                  ),
-                ),
+              const SizedBox(
+                height: 20,
+              ),
+              UserProfileCard(
+                email: userEmail,
+                fullName: userFullName,
+                phoneNumber: userPhoneNumber,
+                balance: userBalance,
+              ),
+              const SizedBox(
+                height: 20,
               ),
               Padding(
                 padding: const EdgeInsets.all(10.0),
@@ -89,8 +81,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const DetailProfileScreen(
-                                  title: "My Profile"),
+                              builder: (context) =>
+                                  const DetailMyprofileScreen(),
                             ),
                           );
                         },
@@ -121,9 +113,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  const DetailProfileScreen(title: "Language"),
-                            ),
+                                builder: (context) =>
+                                    LanguageScreen(title: "Language")),
                           );
                         },
                       ),
@@ -156,8 +147,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               return AlertDialog(
                                 backgroundColor:
                                     const Color.fromARGB(255, 197, 198, 199),
+                                shape: BeveledRectangleBorder(
+                                    borderRadius: BorderRadius.circular(4)),
                                 content: const Text(
-                                    "Are you sure, You want to delete account"),
+                                  "Are you sure, You want to delete account",
+                                  style: TextStyle(fontSize: 16),
+                                ),
                                 actions: [
                                   TextButton(
                                       onPressed: () {
@@ -168,7 +163,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       onPressed: () {
                                         Navigator.of(context).pop();
                                       },
-                                      child: const Text("Yes"))
+                                      style: ElevatedButton.styleFrom(
+                                          shape: BeveledRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(5)),
+                                          backgroundColor: Colors.redAccent),
+                                      child: const Text(
+                                        "Yes",
+                                        style: TextStyle(color: Colors.white),
+                                      ))
                                 ],
                               );
                             },
@@ -188,6 +191,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               return AlertDialog(
                                 backgroundColor:
                                     const Color.fromARGB(255, 197, 198, 199),
+                                shape: BeveledRectangleBorder(
+                                    borderRadius: BorderRadius.circular(4)),
                                 title: const Text(
                                   "Confirm Log Out",
                                   style: TextStyle(
@@ -213,8 +218,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                 const LoginScreen(),
                                           ));
                                     },
+                                    style: ElevatedButton.styleFrom(
+                                        shape: BeveledRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(5)),
+                                        backgroundColor: Colors.redAccent),
                                     child: const Text(
                                       "Log Out",
+                                      style: TextStyle(color: Colors.white),
                                     ),
                                   ),
                                 ],

@@ -1,3 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+
 class UserData {
   int? id;
   String? name;
@@ -6,24 +9,22 @@ class UserData {
   int? phone;
   String? email;
   String? password;
-  UserData(
-      {this.id,
-      this.name,
-      this.age,
-      this.gender,
-      this.phone,
-      this.email,
-      this.password});
+  UserData({
+    this.id,
+    this.name,
+    this.age,
+    this.gender,
+    this.phone,
+  });
 
   Map<String, dynamic> toFirebase() {
     return {
-      'id': id,
+      'id': Autocomplete,
       'name': name,
       'age': age,
       'gender': gender,
       'phone': phone,
-      'email': email,
-      'password': password
+      'time': Timestamp.now(),
     };
   }
 
@@ -32,7 +33,5 @@ class UserData {
         name = map['name'],
         age = map['age'],
         gender = map['gender'],
-        phone = map['phone'],
-        email = map['email'],
-        password = map['password'];
+        phone = map['phone'];
 }
