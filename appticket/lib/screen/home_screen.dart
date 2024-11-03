@@ -1,5 +1,6 @@
 import 'package:appticket/photo_list/image_list.dart';
 import 'package:appticket/widget_show/card_hotel.dart';
+import 'package:appticket/widget_show/detail_hotel_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -7,6 +8,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+   
+
     return Scaffold(
       backgroundColor: const Color.fromARGB(230, 248, 248, 248),
       body: SafeArea(
@@ -24,7 +27,7 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         Text(
                           DateTime.now().hour < 12
-                              ? "Good morning"
+                              ? "Good Morning"
                               : "Good Afternoon",
                           style: const TextStyle(fontSize: 20),
                         ),
@@ -79,12 +82,18 @@ class HomeScreen extends StatelessWidget {
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                     ),
-                    InkWell(onTap: () {}, child: const Text("View All")),
+                    InkWell(
+                      onTap: () {},
+                      child: const Text(
+                        "View All",
+                        style: TextStyle(color: Colors.blue),
+                      ),
+                    ),
                   ],
                 ),
                 const SizedBox(height: 20),
 
-                // Flights ListView with fixed height
+                // Flights ListView
                 SizedBox(
                   height: 190,
                   child: ListView.builder(
@@ -110,38 +119,62 @@ class HomeScreen extends StatelessWidget {
                 const SizedBox(height: 20),
 
                 // Hotels Section
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    const Text(
                       "Hotels",
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                     ),
-                    Text("View all"),
+                    InkWell(
+                      onTap: () {},
+                      child: const Text(
+                        "View All",
+                        style: TextStyle(color: Colors.blue),
+                      ),
+                    ),
                   ],
                 ),
                 const SizedBox(height: 20),
 
+                // Hotels ListView
                 SizedBox(
                   height: 300,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: hotel.length,
+                    itemCount: hotels.length,
                     itemBuilder: (context, index) {
+                      final hotel = hotels[index];
                       return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                        child: CardHotel(
-                          image: hotel[index],
-                          title: "Hotel",
-                          subtitle: "Loy",
-                          review: "4",
-                          price: "100\$",
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DetailHotelScreen(
+                                  title: hotel["title"]!,
+                                  image: hotel["image"]!,
+                                  price: hotel["price"]!,
+                                  review: hotel["review"]!,
+                                  subtitle: hotel["subtitle"]!,
+                                ),
+                              ),
+                            );
+                          },
+                          child: CardHotel(
+                            image: hotel["image"]!,
+                            title: hotel["title"]!,
+                            subtitle: hotel["subtitle"]!,
+                            review: hotel["review"]!,
+                            price: hotel["price"]!,
+                          ),
                         ),
                       );
                     },
                   ),
-                )
+                ),
               ],
             ),
           ),

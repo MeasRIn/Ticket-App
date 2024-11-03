@@ -1,5 +1,6 @@
 import 'package:appticket/photo_list/image_list.dart';
 import 'package:appticket/widget_show/card_hotel.dart';
+import 'package:appticket/widget_show/detail_hotel_screen.dart';
 import 'package:flutter/material.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -151,7 +152,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         child: ElevatedButton(
                           onPressed: () {},
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blueAccent,
+                            backgroundColor: Colors.blueGrey,
                           ),
                           child: const Padding(
                             padding: EdgeInsets.symmetric(vertical: 12),
@@ -250,7 +251,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         child: ElevatedButton(
                           onPressed: () {},
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blueAccent,
+                            backgroundColor: Colors.blueGrey,
                           ),
                           child: const Padding(
                             padding: EdgeInsets.symmetric(vertical: 12),
@@ -286,17 +287,35 @@ class _SearchScreenState extends State<SearchScreen> {
                             height: 300,
                             child: ListView.builder(
                               scrollDirection: Axis.horizontal,
-                              itemCount: hotel.length,
+                              itemCount: hotels.length,
                               itemBuilder: (context, index) {
+                                final hotel = hotels[index];
                                 return Padding(
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 10.0),
-                                  child: CardHotel(
-                                    image: hotel[index],
-                                    title: "Hotel",
-                                    subtitle: "Loy",
-                                    review: "4",
-                                    price: "100\$",
+                                      horizontal: 10),
+                                  child: InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              DetailHotelScreen(
+                                            title: hotel["title"]!,
+                                            image: hotel["image"]!,
+                                            price: hotel["price"]!,
+                                            review: hotel["review"]!,
+                                            subtitle: hotel["subtitle"]!,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    child: CardHotel(
+                                      image: hotel["image"]!,
+                                      title: hotel["title"]!,
+                                      subtitle: hotel["subtitle"]!,
+                                      review: hotel["review"]!,
+                                      price: hotel["price"]!,
+                                    ),
                                   ),
                                 );
                               },

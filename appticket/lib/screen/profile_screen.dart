@@ -1,4 +1,6 @@
+import 'package:appticket/widget_show/build_card.dart';
 import 'package:flutter/material.dart';
+import 'package:appticket/widget_show/detail_profile_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -13,319 +15,197 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(230, 248, 248, 248),
       body: SafeArea(
-          child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Container(
-                        width: 70,
-                        height: 70,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50),
-                            color: Colors.blueAccent),
-                        child: Image.asset(
-                          "assets/images/logo.png",
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                    const Text(
-                      "user Name",
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ]),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8),
-                    child: Icon(
-                      Icons.settings,
-                      size: 30,
-                      color: Colors.blueGrey,
-                    ),
-                  )
-                ],
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.all(10.0),
-              child: SizedBox(
-                height: 200,
-                width: double.infinity,
-                child: Card(
-                  elevation: 7,
-                  color: Colors.blueGrey,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  child: Column(),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: SizedBox(
-                height: 450,
-                width: double.infinity,
-                child: Card(
-                  elevation: 1,
-                  color: Colors.grey[150],
-                  shape: const RoundedRectangleBorder(
-                    borderRadius:
-                        BorderRadius.vertical(bottom: Radius.circular(1)),
-                  ),
-                  
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 7),
-                    child: Column(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
                       children: [
-                        SizedBox(
-                          height: 70,
-                          width: double.infinity,
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(1)),
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                // information card
-                                Row(
-                                  children: [
-                                    Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 20),
-                                      child: Icon(
-                                        Icons.person,
-                                        color: Colors.blueGrey,
-                                        size: 30,
-                                      ),
-                                    ),
-                                    Text(
-                                      "My Profile",
-                                      style: TextStyle(fontSize: 16),
-                                    )
-                                  ],
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 10),
-                                  child: Icon(
-                                    Icons.arrow_forward_ios,
-                                    size: 16,
-                                    color: Colors.blueGrey,
-                                  ),
-                                ),
-                              ],
-                            ),
+                        Container(
+                          height: 80,
+                          width: 80,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
                           ),
+                          child: Image.asset("assets/images/user.png"),
                         ),
-                        SizedBox(
-                          height: 70,
-                          width: double.infinity,
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(1)),
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                // wallet card
-                                Row(
-                                  children: [
-                                    Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 20),
-                                      child: Icon(
-                                        Icons.wallet,
-                                        color: Colors.blueGrey,
-                                        size: 30,
-                                      ),
-                                    ),
-                                    Text(
-                                      "Wallet",
-                                      style: TextStyle(fontSize: 16),
-                                    )
-                                  ],
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 10),
-                                  child: Icon(
-                                    Icons.arrow_forward_ios,
-                                    size: 16,
-                                    color: Colors.blueGrey,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 70,
-                          width: double.infinity,
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(1)),
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                // language card
-                                Row(
-                                  children: [
-                                    Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 20),
-                                      child: Icon(
-                                        Icons.language,
-                                        color: Colors.blueGrey,
-                                        size: 30,
-                                      ),
-                                    ),
-                                    Text(
-                                      "Language",
-                                      style: TextStyle(fontSize: 16),
-                                    )
-                                  ],
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 10),
-                                  child: Icon(
-                                    Icons.arrow_forward_ios,
-                                    size: 16,
-                                    color: Colors.blueGrey,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 70,
-                          width: double.infinity,
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(1)),
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                // language card
-                                Row(
-                                  children: [
-                                    Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 20),
-                                      child: Icon(
-                                        Icons.call,
-                                        color: Colors.blueGrey,
-                                        size: 30,
-                                      ),
-                                    ),
-                                    Text(
-                                      "Contact Us",
-                                      style: TextStyle(fontSize: 16),
-                                    )
-                                  ],
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 10),
-                                  child: Icon(
-                                    Icons.arrow_forward_ios,
-                                    size: 16,
-                                    color: Colors.blueGrey,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 70,
-                          width: double.infinity,
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(1)),
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                // information card
-                                Row(
-                                  children: [
-                                    Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 20),
-                                      child: Icon(
-                                        Icons.person_off,
-                                        color: Colors.blueGrey,
-                                        size: 30,
-                                      ),
-                                    ),
-                                    Text(
-                                      "Delete Account",
-                                      style: TextStyle(fontSize: 16),
-                                    )
-                                  ],
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 10),
-                                  child: Icon(
-                                    Icons.arrow_forward_ios,
-                                    size: 16,
-                                    color: Colors.blueGrey,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 70,
-                          width: double.infinity,
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(1)),
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                // information card
-                                Row(
-                                  children: [
-                                    Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 20),
-                                      child: Icon(
-                                        Icons.logout,
-                                        color: Colors.blueGrey,
-                                        size: 30,
-                                      ),
-                                    ),
-                                    Text(
-                                      "log Out",
-                                      style: TextStyle(fontSize: 16),
-                                    )
-                                  ],
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 10),
-                                  child: Icon(
-                                    Icons.arrow_forward_ios,
-                                    size: 16,
-                                    color: Colors.blueGrey,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                        const Text("User Name"),
                       ],
                     ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.settings,
+                        size: 35,
+                        color: Colors.blueGrey,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              InkWell(
+                onTap: () {},
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                  child: Container(
+                    height: 200,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.blueGrey,
+                    ),
+                    child:
+                        const Center(child: Text("Your Profile Details Here")),
                   ),
                 ),
               ),
-            )
-          ],
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: SizedBox(
+                  height: 450,
+                  width: double.infinity,
+                  child: Column(
+                    children: [
+                      buildCard(
+                        context,
+                        icon: Icons.person,
+                        title: "My Profile",
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const DetailProfileScreen(
+                                  title: "My Profile"),
+                            ),
+                          );
+                        },
+                      ),
+                      buildCard(
+                        context,
+                        icon: Icons.wallet,
+                        title: "Wallet",
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  const DetailProfileScreen(title: "Wallet"),
+                            ),
+                          );
+                        },
+                      ),
+                      buildCard(
+                        context,
+                        icon: Icons.language,
+                        title: "Language",
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  const DetailProfileScreen(title: "Language"),
+                            ),
+                          );
+                        },
+                      ),
+                      buildCard(
+                        context,
+                        icon: Icons.call,
+                        title: "Contact Us",
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const DetailProfileScreen(
+                                  title: "Contact Us"),
+                            ),
+                          );
+                        },
+                      ),
+                      buildCard(
+                        context,
+                        icon: Icons.delete_sharp,
+                        title: "Delete Account",
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                backgroundColor:
+                                    const Color.fromARGB(255, 197, 198, 199),
+                                content: const Text(
+                                    "Are you sure, You want to delete account"),
+                                actions: [
+                                  TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: const Text("Cancel")),
+                                  ElevatedButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child:const  Text("Yes"))
+                                ],
+                              );
+                            },
+                          );
+                        },
+                      ),
+                      buildCard(
+                        context,
+                        icon: Icons.logout,
+                        title: "Log Out",
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                backgroundColor:
+                                    const Color.fromARGB(255, 197, 198, 199),
+                                title: const Text(
+                                  "Confirm Log Out",
+                                  style: TextStyle(
+                                      color: Color.fromARGB(255, 255, 115, 60)),
+                                ),
+                                content: const Text(
+                                    "Are you sure you want to log out?"),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: const Text(
+                                      "Cancel",
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: const Text(
+                                      "Log Out",
+                                    ),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
-      )),
+      ),
     );
   }
 }
