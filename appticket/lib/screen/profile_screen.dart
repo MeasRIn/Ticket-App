@@ -72,6 +72,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   child: Column(
                     children: [
                       buildCard(
+                        textColor: "0xFF607D8B",
+                        color: "0xFF607D8B",
                         context,
                         icon: Icons.person,
                         title: "My Profile",
@@ -86,6 +88,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         },
                       ),
                       buildCard(
+                        textColor: "0xFF607D8B",
+                        color: "0xFF607D8B",
                         context,
                         icon: Icons.wallet,
                         title: "Wallet",
@@ -100,6 +104,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         },
                       ),
                       buildCard(
+                        textColor: "0xFF607D8B",
+                        color: "0xFF607D8B",
                         context,
                         icon: Icons.language,
                         title: "Language",
@@ -114,6 +120,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         },
                       ),
                       buildCard(
+                        textColor: "0xFF607D8B",
+                        color: "0xFF607D8B",
                         context,
                         icon: Icons.call,
                         title: "Contact Us",
@@ -128,6 +136,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         },
                       ),
                       buildCard(
+                        textColor: "0xFF607D8B",
+                        color: "0xFF607D8B",
                         context,
                         icon: Icons.delete_sharp,
                         title: "Delete Account",
@@ -150,7 +160,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       onPressed: () {
                                         Navigator.of(context).pop();
                                       },
-                                      child:const  Text("Yes"))
+                                      child: const Text("Yes"))
                                 ],
                               );
                             },
@@ -158,6 +168,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         },
                       ),
                       buildCard(
+                        textColor: "0xFFF11C1C",
+                        color: "0xFFF11C1C",
                         context,
                         icon: Icons.logout,
                         title: "Log Out",

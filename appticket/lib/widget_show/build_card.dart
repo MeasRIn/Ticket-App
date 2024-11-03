@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 Widget buildCard(BuildContext context,
     {required IconData icon,
     required String title,
+    required String color,
+    required String textColor,
     required VoidCallback onTap}) {
   return InkWell(
     onTap: onTap,
@@ -20,13 +22,14 @@ Widget buildCard(BuildContext context,
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Icon(
                     icon,
-                    color: Colors.blueGrey,
+                    color: Color(int.parse(color)),
                     size: 30,
                   ),
                 ),
                 Text(
                   title,
-                  style: const TextStyle(fontSize: 16),
+                  style: TextStyle(
+                      fontSize: 16, color: Color(int.parse(textColor))),
                 ),
               ],
             ),
