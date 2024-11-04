@@ -24,6 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(230, 248, 248, 248),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -33,10 +34,9 @@ class _LoginScreenState extends State<LoginScreen> {
             const Text(
               'Login',
               style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-              textAlign: TextAlign.center,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blueGrey),
             ),
             const SizedBox(height: 24),
             TextField(
@@ -46,7 +46,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
-                prefixIcon: const Icon(Icons.email),
+                prefixIcon: const Icon(
+                  Icons.email,
+                  color: Colors.blueGrey,
+                ),
               ),
               keyboardType: TextInputType.emailAddress,
             ),
@@ -58,7 +61,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
-                prefixIcon: const Icon(Icons.lock),
+                prefixIcon: const Icon(
+                  Icons.lock,
+                  color: Colors.blueGrey,
+                ),
               ),
               obscureText: true,
             ),
@@ -95,6 +101,8 @@ class _LoginScreenState extends State<LoginScreen> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blueAccent,
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
+                shape: BeveledRectangleBorder(
+                    borderRadius: BorderRadius.circular(5)),
               ),
               child: const Text(
                 'Log In',

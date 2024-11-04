@@ -43,7 +43,10 @@ class _DetailMyprofileScreenState extends State<DetailMyprofileScreen> {
               width: double.infinity,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
-                  color: Colors.white,
+                  gradient: const LinearGradient(colors: [
+                    Colors.white,
+                    Color.fromARGB(160, 255, 255, 255)
+                  ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey,
@@ -179,9 +182,11 @@ class _DetailMyprofileScreenState extends State<DetailMyprofileScreen> {
                     ));
               },
               style: ElevatedButton.styleFrom(
-                  shape: BeveledRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  backgroundColor: Colors.blueGrey),
+                shape: BeveledRectangleBorder(
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                backgroundColor: Colors.blueGrey,
+              ),
               child: const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Text(
@@ -196,4 +201,3 @@ class _DetailMyprofileScreenState extends State<DetailMyprofileScreen> {
     );
   }
 }
-

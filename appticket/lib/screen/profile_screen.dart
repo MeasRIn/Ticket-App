@@ -3,6 +3,7 @@ import 'package:appticket/widget_show/build_card.dart';
 import 'package:appticket/widget_show/card_profile.dart';
 import 'package:appticket/widget_show/detail_myprofile_screen.dart';
 import 'package:appticket/widget_show/language_screen.dart';
+import 'package:appticket/widget_show/setting_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:appticket/widget_show/detail_profile_screen.dart';
 
@@ -42,7 +43,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     ),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const SettingScreen(),
+                            ));
+                      },
                       icon: const Icon(
                         Icons.settings,
                         size: 35,

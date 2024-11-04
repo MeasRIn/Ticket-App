@@ -25,6 +25,7 @@ class _LoginScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(230, 248, 248, 248),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -34,9 +35,9 @@ class _LoginScreenState extends State<SignUpScreen> {
             const Text(
               'Create Account',
               style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blueGrey),
               textAlign: TextAlign.left,
             ),
             const SizedBox(height: 24),
@@ -47,7 +48,7 @@ class _LoginScreenState extends State<SignUpScreen> {
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
-                prefixIcon: const Icon(Icons.email),
+                prefixIcon: const Icon(Icons.email, color: Colors.blueGrey),
               ),
               keyboardType: TextInputType.emailAddress,
             ),
@@ -59,7 +60,7 @@ class _LoginScreenState extends State<SignUpScreen> {
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
-                prefixIcon: const Icon(Icons.lock),
+                prefixIcon: const Icon(Icons.lock, color: Colors.blueGrey),
               ),
               obscureText: true,
             ),
@@ -71,7 +72,7 @@ class _LoginScreenState extends State<SignUpScreen> {
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
-                prefixIcon: const Icon(Icons.lock),
+                prefixIcon: const Icon(Icons.lock, color: Colors.blueGrey),
               ),
               obscureText: true,
             ),
@@ -124,9 +125,10 @@ class _LoginScreenState extends State<SignUpScreen> {
                 }
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blueAccent,
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-              ),
+                  backgroundColor: Colors.blueAccent,
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  shape: BeveledRectangleBorder(
+                      borderRadius: BorderRadius.circular(5))),
               child: const Text(
                 'Sign In',
                 style: TextStyle(fontSize: 18, color: Colors.white),
