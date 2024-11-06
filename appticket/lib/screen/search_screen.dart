@@ -1,4 +1,5 @@
 import 'package:appticket/photo_list/image_list.dart';
+import 'package:appticket/widget_show/card_flight.dart';
 import 'package:appticket/widget_show/card_hotel.dart';
 import 'package:appticket/widget_show/detail_hotel_screen.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,7 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  bool isAirlineSelected = true; // Track selected tab
+  bool isAirlineSelected = true; //swap tap
 
   @override
   Widget build(BuildContext context) {
@@ -168,37 +169,48 @@ class _SearchScreenState extends State<SearchScreen> {
                         ),
                       ),
                       const SizedBox(
-                        height: 30,
+                        height: 10,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            "Upcoming Flights",
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.w500),
-                          ),
-                          InkWell(onTap: () {}, child: const Text("View All")),
-                        ],
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              "Upcoming Flights",
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.w500),
+                            ),
+                            InkWell(
+                                onTap: () {}, child: const Text("View All")),
+                          ],
+                        ),
                       ),
-                      const SizedBox(height: 20),
                       SizedBox(
-                        height: 190,
+                        height: 280,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: flights.length,
+                          itemCount: flightInfo.length,
                           itemBuilder: (context, index) {
+                            final flights = flightInfo[index];
                             return Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),
-                              child: Container(
-                                width: 360,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  image: DecorationImage(
-                                    image: AssetImage(flights[index]),
-                                    fit: BoxFit.cover,
-                                  ),
+                              child: InkWell(
+                                onTap: () {},
+                                child: CardFlight(
+                                  from: flights["departureCity"]!,
+                                  to: flights["arrivalCity"]!,
+                                  departureTime: flights["departureTime"]!,
+                                  arrivalTime: flights["arrivalTime"]!,
+                                  flightDuration: flights["flightDuration"]!,
+                                  airlineName: flights["airline"]!,
+                                  flightNumber: flights["flightNumber"]!,
+                                  flightDate: flights["flightDate"]!,
+                                  departureCode: flights["departureCode"]!,
+                                  arrivalCode: flights["arrivalCode"]!,
+                                  typeOfChair: flights["typeOfChair"]!,
+                                  price: flights["price"]!,
                                 ),
                               ),
                             );

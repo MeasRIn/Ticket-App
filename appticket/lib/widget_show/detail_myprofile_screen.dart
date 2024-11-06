@@ -1,9 +1,12 @@
+import 'package:appticket/datas_store/database.dart';
 import 'package:appticket/screen/profile_screen.dart';
-import 'package:appticket/widget_show/edit_info_screen.dart';
+import 'package:appticket/widget_show/update_info_profile_user.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:random_string/random_string.dart';
 
 class DetailMyprofileScreen extends StatefulWidget {
+  
   const DetailMyprofileScreen({super.key});
 
   @override
@@ -11,6 +14,8 @@ class DetailMyprofileScreen extends StatefulWidget {
 }
 
 class _DetailMyprofileScreenState extends State<DetailMyprofileScreen> {
+  String userId = randomAlphaNumeric(8);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +35,7 @@ class _DetailMyprofileScreenState extends State<DetailMyprofileScreen> {
                 child: Image.asset("assets/images/user.png"),
               ),
               Text(
-                userFullName,
+                userFullName.toString(),
                 style:
                     const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
               ),
@@ -57,12 +62,12 @@ class _DetailMyprofileScreenState extends State<DetailMyprofileScreen> {
                   ]),
               child: Column(
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           "User code ",
                           style: TextStyle(
                             fontSize: 18,
@@ -70,8 +75,8 @@ class _DetailMyprofileScreenState extends State<DetailMyprofileScreen> {
                           ),
                         ),
                         Text(
-                          "Kh16805",
-                          style: TextStyle(
+                          userId,
+                          style: const TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -92,7 +97,7 @@ class _DetailMyprofileScreenState extends State<DetailMyprofileScreen> {
                           ),
                         ),
                         Text(
-                          userEmail,
+                          userEmail.toString(),
                           style: const TextStyle(
                             fontSize: 18,
                           ),
@@ -100,12 +105,12 @@ class _DetailMyprofileScreenState extends State<DetailMyprofileScreen> {
                       ],
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           "Birthday ",
                           style: TextStyle(
                             fontSize: 18,
@@ -113,8 +118,8 @@ class _DetailMyprofileScreenState extends State<DetailMyprofileScreen> {
                           ),
                         ),
                         Text(
-                          "26-06-2003",
-                          style: TextStyle(
+                          userBirth.toString(),
+                          style: const TextStyle(
                             fontSize: 18,
                           ),
                         ),
@@ -171,15 +176,27 @@ class _DetailMyprofileScreenState extends State<DetailMyprofileScreen> {
           const SizedBox(
             height: 16,
           ),
+          // Inside the DetailMyprofileScreen class
           SizedBox(
             width: 200,
             child: ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const EditInfoScreen(),
-                    ));
+              onPressed: () async {
+                final result = await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const UpdateInfoProfileUser(),
+                  ),
+                );
+
+                // Check if result is not null and update the user information
+                if (result != null && result is Map<String, dynamic>) {
+                  setState(() {
+                    userFullName = result['name'];
+                    userEmail = result['email'];
+                    userPhoneNumber = result['phone'];
+                    userBirth = result['birth'];
+                  });
+                }
               },
               style: ElevatedButton.styleFrom(
                 shape: BeveledRectangleBorder(

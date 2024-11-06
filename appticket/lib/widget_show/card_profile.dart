@@ -1,18 +1,14 @@
-import 'package:appticket/widget_show/edit_info_screen.dart';
+import 'package:appticket/screen/profile_screen.dart';
+import 'package:appticket/widget_show/update_info_profile_user.dart';
 import 'package:flutter/material.dart';
 
 class UserProfileCard extends StatelessWidget {
-  final String fullName;
-  final String email;
-  final String? phoneNumber;
-  final String balance;
+  final String fullName = userFullName.toString();
+  final String email = userEmail.toString();
+  final String phoneNumber = userPhoneNumber.toString();
+  final String balance = "100";
 
-  UserProfileCard({
-    required this.fullName,
-    required this.email,
-    this.phoneNumber,
-    required this.balance,
-  });
+  UserProfileCard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +68,8 @@ class UserProfileCard extends StatelessWidget {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) =>const EditInfoScreen(),
+                                      builder: (context) =>
+                                          const UpdateInfoProfileUser(),
                                     ));
                               },
                             ),
@@ -87,7 +84,7 @@ class UserProfileCard extends StatelessWidget {
                         ),
                         if (phoneNumber != null)
                           Text(
-                            phoneNumber!,
+                            "(+855) $phoneNumber",
                             style: const TextStyle(
                               fontSize: 14,
                               color: Colors.white70,

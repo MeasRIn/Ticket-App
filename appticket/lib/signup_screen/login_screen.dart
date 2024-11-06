@@ -89,12 +89,19 @@ class _LoginScreenState extends State<LoginScreen> {
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
-                          content: Text('Login failed. Please try again.')),
+                        content: Text('Login failed. Please try again.'),
+                        shape: BeveledRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(5))),
+                      ),
                     );
                   }
                 } catch (e) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Error: $e')),
+                    SnackBar(
+                      content: Text('Error: $e'),
+                      shape: BeveledRectangleBorder(
+                          borderRadius: BorderRadius.circular(5)),
+                    ),
                   );
                 }
               },

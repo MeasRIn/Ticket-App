@@ -13,10 +13,11 @@ class ProfileScreen extends StatefulWidget {
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-String userEmail = "MeasRin@gmail.com";
-String userFullName = "Meas Rin";
-String userPhoneNumber = "097 30 38 535";
-String userBalance = "100";
+String? userEmail;
+String? userFullName;
+String? userPhoneNumber;
+String? userBalance;
+String? userBirth;
 
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
@@ -62,12 +63,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               const SizedBox(
                 height: 20,
               ),
-              UserProfileCard(
-                email: userEmail,
-                fullName: userFullName,
-                phoneNumber: userPhoneNumber,
-                balance: userBalance,
-              ),
+              UserProfileCard(),
               const SizedBox(
                 height: 20,
               ),
