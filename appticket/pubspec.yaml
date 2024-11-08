@@ -42,6 +42,7 @@ dependencies:
   image_picker: ^1.1.2
   random_string: ^2.3.1
   fluttertoast: ^8.2.8
+  cr_calendar: ^1.2.1
 
 dev_dependencies:
   flutter_test:
@@ -74,6 +75,10 @@ flutter:
     - assets/images/hotelImages/hotel3.png
     - assets/images/hotelImages/hotel4.png
     - assets/images/user.png
+    - assets/images/airplane/flight.png
+    - assets/images/airplane/home.png
+
+
 
   #   - images/a_dot_ham.jpeg
 

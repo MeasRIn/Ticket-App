@@ -2,6 +2,7 @@ import 'package:appticket/photo_list/image_list.dart';
 import 'package:appticket/widget_show/card_flight.dart';
 import 'package:appticket/widget_show/card_hotel.dart';
 import 'package:appticket/widget_show/detail_hotel_screen.dart';
+import 'package:cr_calendar/cr_calendar.dart';
 import 'package:flutter/material.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -13,6 +14,25 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   bool isAirlineSelected = true; //swap tap
+  CrCalendarController _controller = CrCalendarController();
+  TextEditingController _entryDateController = TextEditingController();
+  TextEditingController _leaveDateController = TextEditingController();
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+    if (picked != null) {
+      setState(() {
+        _leaveDateController.text = "${picked.toLocal()}".split(' ')[0];
+        _entryDateController.text = "${picked.toLocal()}".split(' ')[0];
+        _controller.goToDate(picked); // Move the calendar to the selected date
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -222,38 +242,54 @@ class _SearchScreenState extends State<SearchScreen> {
                 else
                   Column(
                     children: [
+                      // selected date for entry
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: Colors.grey[300],
                         ),
-                        child: const Padding(
+                        child: Padding(
                           padding:
                               EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                           child: TextField(
-                            decoration: InputDecoration(
-                              labelText: "Entry Date",
+                            controller: _entryDateController,
+                            readOnly: true,
+                            decoration: const InputDecoration(
+                              labelText: 'Entry Date',
+                              labelStyle: TextStyle(color: Colors.blueGrey),
                               border: InputBorder.none,
-                              icon: Icon(Icons.event),
+                              suffixIcon: Icon(
+                                Icons.event,
+                                color: Colors.blueGrey,
+                              ),
                             ),
+                            onTap: () => _selectDate(context),
                           ),
                         ),
                       ),
                       const SizedBox(height: 24),
+                      // selected date for leave
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: Colors.grey[300],
                         ),
-                        child: const Padding(
+                        child: Padding(
                           padding:
                               EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                           child: TextField(
-                            decoration: InputDecoration(
-                              labelText: "Leave Date",
+                            controller: _leaveDateController,
+                            readOnly: true,
+                            decoration: const InputDecoration(
+                              labelText: 'Leave Date',
+                              labelStyle: TextStyle(color: Colors.blueGrey),
                               border: InputBorder.none,
-                              icon: Icon(Icons.logout),
+                              suffixIcon: Icon(
+                                Icons.event,
+                                color: Colors.blueGrey,
+                              ),
                             ),
+                            onTap: () => _selectDate(context),
                           ),
                         ),
                       ),

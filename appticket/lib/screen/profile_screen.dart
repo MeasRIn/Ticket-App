@@ -1,4 +1,5 @@
 import 'package:appticket/signup_screen/login_screen.dart';
+import 'package:appticket/test/testing_screen.dart';
 import 'package:appticket/widget_show/build_card.dart';
 import 'package:appticket/widget_show/card_profile.dart';
 import 'package:appticket/widget_show/detail_myprofile_screen.dart';
@@ -100,8 +101,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  const DetailProfileScreen(title: "Wallet"),
+                              builder: (context) =>  TestingScreen(),
                             ),
                           );
                         },
