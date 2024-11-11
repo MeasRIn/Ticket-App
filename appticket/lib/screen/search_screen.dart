@@ -1,8 +1,8 @@
-import 'package:appticket/photo_list/image_list.dart';
+import 'package:appticket/datas_store/database.dart';
 import 'package:appticket/widget_show/card_flight.dart';
 import 'package:appticket/widget_show/card_hotel.dart';
 import 'package:appticket/widget_show/detail_hotel_screen.dart';
-import 'package:cr_calendar/cr_calendar.dart';
+import 'package:appticket/widget_show/view_all_flight.dart';
 import 'package:flutter/material.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -13,25 +13,39 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  bool isAirlineSelected = true; //swap tap
-  CrCalendarController _controller = CrCalendarController();
+  bool isAirlineSelected = true;
   TextEditingController _entryDateController = TextEditingController();
   TextEditingController _leaveDateController = TextEditingController();
 
-  Future<void> _selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
+  Future<DateTime> selectDate() async {
+    DateTime? picked = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime(2000),
       lastDate: DateTime(2101),
     );
-    if (picked != null) {
-      setState(() {
-        _leaveDateController.text = "${picked.toLocal()}".split(' ')[0];
-        _entryDateController.text = "${picked.toLocal()}".split(' ')[0];
-        _controller.goToDate(picked); // Move the calendar to the selected date
-      });
-    }
+    return picked!;
+  }
+
+  final FlightService flightService = FlightService();
+  List<Map<String, dynamic>> flightData = [];
+  List<Map<String, dynamic>> hotelsData = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchFlightData();
+    fetchHotelsData();
+  }
+
+  Future<void> fetchFlightData() async {
+    flightData = await flightService.getFlights();
+    setState(() {});
+  }
+
+  Future<void> fetchHotelsData() async {
+    hotelsData = await flightService.getHotels();
+    setState(() {});
   }
 
   @override
@@ -57,7 +71,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
                 // Toggle Tab
                 Container(
-                  width: 390,
+                  width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
                     color: const Color.fromARGB(255, 224, 224, 224),
@@ -128,7 +142,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 ),
                 const SizedBox(height: 35),
 
-                // Conditional Content based on selected tab
+                // flight section
                 if (isAirlineSelected)
                   Column(
                     children: [
@@ -138,8 +152,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           color: Colors.grey[300],
                         ),
                         child: const Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                          padding: EdgeInsets.symmetric(horizontal: 10),
                           child: TextField(
                             decoration: InputDecoration(
                               labelText: "Departure",
@@ -156,8 +169,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           color: Colors.grey[300],
                         ),
                         child: const Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                          padding: EdgeInsets.symmetric(horizontal: 10),
                           child: TextField(
                             decoration: InputDecoration(
                               labelText: "Arrival",
@@ -169,18 +181,18 @@ class _SearchScreenState extends State<SearchScreen> {
                       ),
                       const SizedBox(height: 24),
                       SizedBox(
-                        width: 390,
+                        width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {},
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.blueGrey,
                           ),
                           child: const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 12),
+                            padding: EdgeInsets.symmetric(vertical: 10),
                             child: Text(
                               "Find Tickets",
                               style: TextStyle(
-                                fontSize: 20,
+                                fontSize: 18,
                                 color: Colors.white,
                                 fontWeight: FontWeight.w400,
                               ),
@@ -191,6 +203,8 @@ class _SearchScreenState extends State<SearchScreen> {
                       const SizedBox(
                         height: 10,
                       ),
+
+                      // flight section
                       Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Row(
@@ -199,20 +213,27 @@ class _SearchScreenState extends State<SearchScreen> {
                             const Text(
                               "Upcoming Flights",
                               style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.w500),
+                                  fontSize: 18, fontWeight: FontWeight.w500),
                             ),
                             InkWell(
-                                onTap: () {}, child: const Text("View All")),
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => ViewAllFlight(),
+                                      ));
+                                },
+                                child: const Text("View All")),
                           ],
                         ),
                       ),
                       SizedBox(
-                        height: 280,
+                        height: 230,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: flightInfo.length,
+                          itemCount: flightData.length,
                           itemBuilder: (context, index) {
-                            final flights = flightInfo[index];
+                            final flights = flightData[index];
                             return Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),
@@ -249,8 +270,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           color: Colors.grey[300],
                         ),
                         child: Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: TextField(
                             controller: _entryDateController,
                             readOnly: true,
@@ -263,7 +283,16 @@ class _SearchScreenState extends State<SearchScreen> {
                                 color: Colors.blueGrey,
                               ),
                             ),
-                            onTap: () => _selectDate(context),
+                            onTap: () async {
+                              await selectDate().then(
+                                (value) {
+                                  setState(() {
+                                    _entryDateController.text =
+                                        "${value.toLocal()}".split(' ')[0];
+                                  });
+                                },
+                              );
+                            },
                           ),
                         ),
                       ),
@@ -275,8 +304,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           color: Colors.grey[300],
                         ),
                         child: Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: TextField(
                             controller: _leaveDateController,
                             readOnly: true,
@@ -289,24 +317,33 @@ class _SearchScreenState extends State<SearchScreen> {
                                 color: Colors.blueGrey,
                               ),
                             ),
-                            onTap: () => _selectDate(context),
+                            onTap: () async {
+                              await selectDate().then(
+                                (value) {
+                                  setState(() {
+                                    _leaveDateController.text =
+                                        "${value.toLocal()}".split(' ')[0];
+                                  });
+                                },
+                              );
+                            },
                           ),
                         ),
                       ),
                       const SizedBox(height: 24),
                       SizedBox(
-                        width: 390,
+                        width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {},
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.blueGrey,
                           ),
                           child: const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 12),
+                            padding: EdgeInsets.symmetric(vertical: 10),
                             child: Text(
                               "Find Hotels",
                               style: TextStyle(
-                                fontSize: 20,
+                                fontSize: 18,
                                 color: Colors.white,
                                 fontWeight: FontWeight.w400,
                               ),
@@ -319,25 +356,29 @@ class _SearchScreenState extends State<SearchScreen> {
                       ),
                       Column(
                         children: [
-                          const Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Hotels",
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.w500),
-                              ),
-                              Text("View all"),
-                            ],
+                          const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Hotels",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                Text("View all"),
+                              ],
+                            ),
                           ),
                           const SizedBox(height: 20),
                           SizedBox(
                             height: 300,
                             child: ListView.builder(
                               scrollDirection: Axis.horizontal,
-                              itemCount: hotels.length,
+                              itemCount: hotelsData.length,
                               itemBuilder: (context, index) {
-                                final hotel = hotels[index];
+                                final hotel = hotelsData[index];
                                 return Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 10),

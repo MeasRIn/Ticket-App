@@ -1,4 +1,4 @@
-import 'package:appticket/photo_list/image_list.dart';
+import 'package:appticket/datas_store/database.dart';
 import 'package:appticket/widget_show/card_flight.dart';
 import 'package:appticket/widget_show/card_hotel.dart';
 import 'package:appticket/widget_show/detail_hotel_screen.dart';
@@ -6,8 +6,34 @@ import 'package:appticket/widget_show/view_all_flight.dart';
 import 'package:appticket/widget_show/view_all_hotels.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final FlightService flightService = FlightService();
+  List<Map<String, dynamic>> flightData = [];
+  List<Map<String, dynamic>> hotelsData = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchFlightData();
+    fetchHotelsData();
+  }
+
+  Future<void> fetchFlightData() async {
+    flightData = await flightService.getFlights();
+    setState(() {});
+  }
+
+  Future<void> fetchHotelsData() async {
+    hotelsData = await flightService.getHotels();
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,12 +127,12 @@ class HomeScreen extends StatelessWidget {
 
                 // Flights ListView
                 SizedBox(
-                  height: 280,
+                  height: 230,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: flightInfo.length,
+                    itemCount: flightData.length,
                     itemBuilder: (context, index) {
-                      final flights = flightInfo[index];
+                      final flights = flightData[index];
                       return Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: InkWell(
@@ -163,9 +189,9 @@ class HomeScreen extends StatelessWidget {
                   height: 300,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: hotels.length,
+                    itemCount: hotelsData.length,
                     itemBuilder: (context, index) {
-                      final hotel = hotels[index];
+                      final hotel = hotelsData[index];
                       return Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: InkWell(
@@ -179,6 +205,7 @@ class HomeScreen extends StatelessWidget {
                                   price: hotel["price"]!,
                                   review: hotel["review"]!,
                                   subtitle: hotel["subtitle"]!,
+                                  location: hotel["location"]!,
                                 ),
                               ),
                             );

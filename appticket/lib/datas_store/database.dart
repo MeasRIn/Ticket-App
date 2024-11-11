@@ -26,3 +26,33 @@ class Database {
     }
   }
 }
+
+
+class FlightService {
+  Future<List<Map<String, dynamic>>> getFlights() async {
+    try {
+      QuerySnapshot snapshot = await FirebaseFirestore.instance
+          .collection('flight_card_info')
+          .get();
+      return snapshot.docs
+          .map((doc) => doc.data() as Map<String, dynamic>)
+          .toList();
+    } catch (e) {
+      print("Error fetching flights: $e");
+      return [];
+    }
+  }
+  Future<List<Map<String, dynamic>>> getHotels() async {
+    try {
+      QuerySnapshot snapshot = await FirebaseFirestore.instance
+          .collection('hotel_card_info')
+          .get();
+      return snapshot.docs
+          .map((doc) => doc.data() as Map<String, dynamic>)
+          .toList();
+    } catch (e) {
+      print("Error fetching Hotels: $e");
+      return [];
+    }
+  }
+}

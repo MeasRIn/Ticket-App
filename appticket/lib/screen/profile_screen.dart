@@ -5,6 +5,7 @@ import 'package:appticket/widget_show/card_profile.dart';
 import 'package:appticket/widget_show/detail_myprofile_screen.dart';
 import 'package:appticket/widget_show/language_screen.dart';
 import 'package:appticket/widget_show/setting_screen.dart';
+import 'package:appticket/widget_show/wallet_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:appticket/widget_show/detail_profile_screen.dart';
 
@@ -15,7 +16,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 String? userEmail;
-String? userFullName;
+String userFullName = "user";
 String? userPhoneNumber;
 String? userBalance;
 String? userBirth;
@@ -101,7 +102,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>  TestingScreen(),
+                              builder: (context) => const WalletScreen(),
                             ),
                           );
                         },

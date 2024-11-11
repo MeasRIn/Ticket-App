@@ -6,15 +6,16 @@ class DetailHotelScreen extends StatelessWidget {
   final String subtitle;
   final String review;
   final String price;
+  final String? location;
 
-  const DetailHotelScreen({
-    super.key,
-    required this.image,
-    required this.title,
-    required this.subtitle,
-    required this.review,
-    required this.price,
-  });
+  const DetailHotelScreen(
+      {super.key,
+      required this.image,
+      required this.title,
+      required this.subtitle,
+      required this.review,
+      required this.price,
+      this.location});
 
   @override
   Widget build(BuildContext context) {
@@ -105,6 +106,10 @@ class DetailHotelScreen extends StatelessWidget {
                     height: 1.5,
                   ),
                 ),
+                const SizedBox(
+                  height: 50,
+                ),
+                Text("Location : ${location}"),
                 const SizedBox(
                   height: 50,
                 ),

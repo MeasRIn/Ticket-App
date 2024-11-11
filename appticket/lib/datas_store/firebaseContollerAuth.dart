@@ -86,7 +86,7 @@ class FirebaseAuthController {
           );
         },
       );
-      return null; // Return null on error
+      return null; 
     }
   }
 }

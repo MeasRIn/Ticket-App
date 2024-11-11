@@ -1,9 +1,28 @@
+import 'package:appticket/datas_store/database.dart';
 import 'package:appticket/widget_show/card_flight.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class ViewAllFlight extends StatelessWidget {
-  const ViewAllFlight({super.key});
+class ViewAllFlight extends StatefulWidget {
+  ViewAllFlight({super.key});
+
+  @override
+  _ViewAllFlightState createState() => _ViewAllFlightState();
+}
+
+class _ViewAllFlightState extends State<ViewAllFlight> {
+  final FlightService flightService = FlightService();
+  List<Map<String, dynamic>> flightData = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchFlightData();
+  }
+
+  Future<void> fetchFlightData() async {
+    flightData = await flightService.getFlights();
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,20 +34,13 @@ class ViewAllFlight extends StatelessWidget {
       body: SafeArea(
         child: ListView.builder(
           scrollDirection: Axis.vertical,
-          itemCount: flightInfo.length,
+          itemCount: flightData.length,
           itemBuilder: (context, index) {
-            final flights = flightInfo[index];
+            final flights = flightData[index];
             return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
               child: InkWell(
-                onTap: () {
-                  // Add navigation to flight details here
-                  // Example:
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => FlightDetailScreen(flight: flights)),
-                  // );
-                },
+                onTap: () {},
                 child: CardFlight(
                   flightDate: flights["flightDate"],
                   flightNumber: flights["flightNumber"],

@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:random_string/random_string.dart';
 
 class DetailMyprofileScreen extends StatefulWidget {
-  
   const DetailMyprofileScreen({super.key});
 
   @override
@@ -48,10 +47,14 @@ class _DetailMyprofileScreenState extends State<DetailMyprofileScreen> {
               width: double.infinity,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
-                  gradient: const LinearGradient(colors: [
-                    Colors.white,
-                    Color.fromARGB(160, 255, 255, 255)
-                  ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+                  gradient: const LinearGradient(
+                    colors: [
+                      Color.fromARGB(255, 255, 255, 255),
+                      Color.fromARGB(255, 233, 233, 233)
+                    ],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomRight,
+                  ),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey,
@@ -63,22 +66,22 @@ class _DetailMyprofileScreenState extends State<DetailMyprofileScreen> {
               child: Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12, vertical: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text(
                           "User code ",
                           style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                          ),
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.blueGrey),
                         ),
                         Text(
                           userId,
                           style: const TextStyle(
-                            fontSize: 18,
-                          ),
+                              fontSize: 18, color: Colors.blueGrey),
                         ),
                       ],
                     ),
@@ -92,36 +95,35 @@ class _DetailMyprofileScreenState extends State<DetailMyprofileScreen> {
                         const Text(
                           "Email ",
                           style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                          ),
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.blueGrey),
                         ),
                         Text(
                           userEmail.toString(),
                           style: const TextStyle(
-                            fontSize: 18,
-                          ),
+                              fontSize: 18, color: Colors.blueGrey),
                         ),
                       ],
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12, vertical: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text(
                           "Birthday ",
                           style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                          ),
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.blueGrey),
                         ),
                         Text(
                           userBirth.toString(),
                           style: const TextStyle(
-                            fontSize: 18,
-                          ),
+                              fontSize: 18, color: Colors.blueGrey),
                         ),
                       ],
                     ),
@@ -135,15 +137,14 @@ class _DetailMyprofileScreenState extends State<DetailMyprofileScreen> {
                         const Text(
                           "Phone ",
                           style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                          ),
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.blueGrey),
                         ),
                         Text(
                           "(+855) $userPhoneNumber",
                           style: const TextStyle(
-                            fontSize: 18,
-                          ),
+                              fontSize: 18, color: Colors.blueGrey),
                         ),
                       ],
                     ),
@@ -156,15 +157,14 @@ class _DetailMyprofileScreenState extends State<DetailMyprofileScreen> {
                         Text(
                           "Customer Level ",
                           style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                          ),
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.blueGrey),
                         ),
                         Text(
                           "V-1",
-                          style: TextStyle(
-                            fontSize: 18,
-                          ),
+                          style:
+                              TextStyle(fontSize: 18, color: Colors.blueGrey),
                         ),
                       ],
                     ),
@@ -176,7 +176,7 @@ class _DetailMyprofileScreenState extends State<DetailMyprofileScreen> {
           const SizedBox(
             height: 16,
           ),
-          // Inside the DetailMyprofileScreen class
+        
           SizedBox(
             width: 200,
             child: ElevatedButton(
@@ -202,7 +202,7 @@ class _DetailMyprofileScreenState extends State<DetailMyprofileScreen> {
                 shape: BeveledRectangleBorder(
                   borderRadius: BorderRadius.circular(5),
                 ),
-                backgroundColor: Colors.blueGrey,
+                backgroundColor: Colors.blueAccent[200],
               ),
               child: const Padding(
                 padding: EdgeInsets.all(8.0),
