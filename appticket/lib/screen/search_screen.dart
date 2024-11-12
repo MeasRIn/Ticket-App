@@ -71,6 +71,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
                 // Toggle Tab
                 Container(
+                  height: 50,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
@@ -87,17 +88,18 @@ class _SearchScreenState extends State<SearchScreen> {
                           });
                         },
                         child: Container(
-                          width: 195,
+                          height: 40,
+                          width: 170,
                           decoration: BoxDecoration(
                             color: isAirlineSelected
                                 ? Colors.blueGrey
                                 : Colors.transparent,
                             borderRadius: const BorderRadius.horizontal(
-                                left: Radius.circular(30)),
+                                left: Radius.circular(20),
+                                right: Radius.circular(20)),
                           ),
                           child: const Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 12),
+                            padding: EdgeInsets.symmetric(horizontal: 10),
                             child: Center(
                               child: Text(
                                 "Airline",
@@ -116,17 +118,18 @@ class _SearchScreenState extends State<SearchScreen> {
                           });
                         },
                         child: Container(
-                          width: 195,
+                          height: 40,
+                          width: 170,
                           decoration: BoxDecoration(
                             color: isAirlineSelected
                                 ? Colors.transparent
                                 : Colors.blueGrey,
                             borderRadius: const BorderRadius.horizontal(
-                                right: Radius.circular(30)),
+                                right: Radius.circular(20),
+                                left: Radius.circular(20)),
                           ),
                           child: const Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 10),
+                            padding: EdgeInsets.symmetric(horizontal: 12),
                             child: Center(
                               child: Text(
                                 "Hotels",
