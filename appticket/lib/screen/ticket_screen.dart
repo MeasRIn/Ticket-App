@@ -1,3 +1,4 @@
+import 'package:appticket/widget_show/ticket_booking.dart';
 import 'package:flutter/material.dart';
 
 class TicketScreen extends StatelessWidget {
@@ -9,7 +10,8 @@ class TicketScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Text(
           message,
-          style: const TextStyle(fontSize: 18, color: Colors.grey),
+          style: const TextStyle(
+              fontSize: 18, color: Color.fromARGB(255, 139, 139, 139)),
         ),
       ),
     );
@@ -18,7 +20,7 @@ class TicketScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(230, 248, 248, 248),
+      backgroundColor: const Color.fromARGB(230, 236, 236, 236),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -51,7 +53,7 @@ class TicketScreen extends StatelessWidget {
                       height: MediaQuery.of(context).size.height * 0.85,
                       child: TabBarView(
                         children: [
-                          _buildEmptySection("No items yet"),
+                          ticketBooking(),
                           _buildEmptySection("No items yet"),
                         ],
                       ),

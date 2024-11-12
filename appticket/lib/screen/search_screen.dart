@@ -3,6 +3,7 @@ import 'package:appticket/widget_show/card_flight.dart';
 import 'package:appticket/widget_show/card_hotel.dart';
 import 'package:appticket/widget_show/detail_hotel_screen.dart';
 import 'package:appticket/widget_show/view_all_flight.dart';
+import 'package:appticket/widget_show/view_all_hotels.dart';
 import 'package:flutter/material.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -231,7 +232,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         ),
                       ),
                       SizedBox(
-                        height: 230,
+                        height: 220,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
                           itemCount: flightData.length,
@@ -359,18 +360,28 @@ class _SearchScreenState extends State<SearchScreen> {
                       ),
                       Column(
                         children: [
-                          const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 10),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
+                                const Text(
                                   "Hotels",
                                   style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.w500),
                                 ),
-                                Text("View all"),
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              const ViewAllHotels(),
+                                        ));
+                                  },
+                                  child: const Text("View all"),
+                                )
                               ],
                             ),
                           ),

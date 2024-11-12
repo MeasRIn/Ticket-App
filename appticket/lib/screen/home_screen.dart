@@ -127,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                 // Flights ListView
                 SizedBox(
-                  height: 230,
+                  height: 220,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: flightData.length,
@@ -186,7 +186,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                 // Hotels ListView
                 SizedBox(
-                  height: 300,
+                  height: 280,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: hotelsData.length,

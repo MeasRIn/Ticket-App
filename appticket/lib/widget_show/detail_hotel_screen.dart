@@ -107,11 +107,11 @@ class DetailHotelScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: 50,
+                  height: 20,
                 ),
                 Text("Location : ${location}"),
                 const SizedBox(
-                  height: 50,
+                  height: 40,
                 ),
                 SizedBox(
                   width: 400,
